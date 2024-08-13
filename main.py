@@ -1,6 +1,6 @@
+import json
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.datasets import imdb
 from tensorflow.keras.preprocessing import sequence
 from tensorflow.keras.models import load_model
 import streamlit as st
@@ -8,8 +8,10 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from io import BytesIO
 
-# Load the IMDB dataset word index
-word_index = imdb.get_word_index()
+# Load the IMDB dataset word index from the JSON file
+with open('word_index.json', 'r') as f:
+    word_index = json.load(f)
+
 reverse_word_index = {value: key for key, value in word_index.items()}
 
 # Load the pre-trained model
